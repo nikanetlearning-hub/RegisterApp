@@ -1,0 +1,94 @@
+﻿@page "/register"
+@using RegisterApp.Models
+@rendermode InteractiveServer
+
+<PageTitle>ثبت‌نام</PageTitle>
+
+<div class="register-container">
+    <div class="register-card">
+        <div class="register-header">
+            <h1>ایجاد حساب کاربری</h1>
+            <p>برای شروع، اطلاعات زیر را تکمیل کنید.</p>
+        </div>
+
+        @if (isSuccess)
+        {
+            <div class="alert alert-success" role="alert">
+                ✅ ثبت‌نام با موفقیت انجام شد! خوش آمدید، @model.FirstName.
+            </div>
+            <button class="btn btn-outline-primary w-100" @onclick="ResetForm">
+                ثبت‌نام کاربر دیگر
+            </button>
+        }
+        else
+        {
+            <EditForm Model="model" OnValidSubmit="HandleValidSubmit" FormName="register">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="alert alert-danger" />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">نام</label>
+                        <InputText @bind-Value="model.FirstName" class="form-control" placeholder="مثلاً علی" />
+                        <ValidationMessage For="() => model.FirstName" class="text-danger small" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">نام خانوادگی</label>
+                        <InputText @bind-Value="model.LastName" class="form-control" placeholder="مثلاً رضایی" />
+                        <ValidationMessage For="() => model.LastName" class="text-danger small" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ایمیل</label>
+                    <InputText @bind-Value="model.Email" type="email" class="form-control" placeholder="you@example.com" dir="ltr" />
+                    <ValidationMessage For="() => model.Email" class="text-danger small" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">رمز عبور</label>
+                        <InputText @bind-Value="model.Password" type="password" class="form-control" placeholder="حداقل ۸ کاراکتر" />
+                        <ValidationMessage For="() => model.Password" class="text-danger small" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">تکرار رمز عبور</label>
+                        <InputText @bind-Value="model.ConfirmPassword" type="password" class="form-control" placeholder="رمز را دوباره وارد کنید" />
+                        <ValidationMessage For="() => model.ConfirmPassword" class="text-danger small" />
+                    </div>
+                </div>
+
+                <div class="mb-4 form-check">
+                    <InputCheckbox @bind-Value="model.AcceptTerms" class="form-check-input" id="terms" />
+                    <label class="form-check-label" for="terms">
+                        <a href="#" class="link">قوانین و مقررات</a> را می‌پذیرم.
+                    </label>
+                    <ValidationMessage For="() => model.AcceptTerms" class="text-danger small d-block" />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2">ثبت‌نام</button>
+            </EditForm>
+        }
+
+        <div class="register-footer">
+            قبلاً حساب دارید؟ <a href="/login" class="link">وارد شوید</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private RegisterModel model = new();
+    private bool isSuccess = false;
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine($"Register: {model.FirstName} {model.LastName} / {model.Email}");
+        isSuccess = true;
+    }
+
+    private void ResetForm()
+    {
+        model = new RegisterModel();
+        isSuccess = false;
+    }
+}

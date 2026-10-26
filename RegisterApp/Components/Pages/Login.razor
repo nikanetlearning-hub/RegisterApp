@@ -1,0 +1,66 @@
+﻿@page "/login"
+@using RegisterApp.Models
+@rendermode InteractiveServer
+
+<PageTitle>ورود</PageTitle>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>ورود به حساب</h1>
+            <p>برای ادامه، اطلاعات خود را وارد کنید.</p>
+        </div>
+
+        @if (isSuccess)
+        {
+            <div class="alert alert-success" role="alert">
+                ✅ ورود با موفقیت انجام شد! خوش آمدید.
+            </div>
+        }
+        else
+        {
+            <EditForm Model="model" OnValidSubmit="HandleValidSubmit" FormName="login">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="alert alert-danger" />
+
+                <div class="mb-3">
+                    <label class="form-label">ایمیل</label>
+                    <InputText @bind-Value="model.Email" type="email" class="form-control" placeholder="you@example.com" dir="ltr" />
+                    <ValidationMessage For="() => model.Email" class="text-danger small" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">رمز عبور</label>
+                    <InputText @bind-Value="model.Password" type="password" class="form-control" placeholder="رمز عبور خود را وارد کنید" />
+                    <ValidationMessage For="() => model.Password" class="text-danger small" />
+                </div>
+
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    <div class="form-check">
+                        <InputCheckbox @bind-Value="model.RememberMe" class="form-check-input" id="remember" />
+                        <label class="form-check-label" for="remember">مرا به خاطر بسپار</label>
+                    </div>
+                    <a href="#" class="link small">رمز عبور را فراموش کرده‌اید؟</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2">ورود</button>
+            </EditForm>
+        }
+
+        <div class="login-footer">
+            حساب کاربری ندارید؟ <a href="/register" class="link">ثبت‌نام کنید</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginModel model = new();
+    private bool isSuccess = false;
+
+    private void HandleValidSubmit()
+    {
+        // در پروژه واقعی، اینجا اعتبارسنجی با دیتابیس انجام می‌شود
+        Console.WriteLine($"Login: {model.Email}");
+        isSuccess = true;
+    }
+}

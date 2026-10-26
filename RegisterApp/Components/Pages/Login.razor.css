@@ -1,0 +1,127 @@
+﻿/* پس‌زمینه گرادیانت آبی-فیروزه‌ای */
+.login-container {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* کارت سفید وسط صفحه */
+.login-card {
+    background: #fff;
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 450px;
+    animation: fadeUp 0.5s ease-out;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* عنوان */
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+    .login-header h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #1a202c;
+        margin-bottom: 0.5rem;
+    }
+
+    .login-header p {
+        color: #718096;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+/* برچسب‌ها و فیلدها */
+.form-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #2d3748;
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    border-radius: 0.6rem;
+    border: 1.5px solid #e2e8f0;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+    .form-control:focus {
+        border-color: #4facfe;
+        background-color: #fff;
+        box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.15);
+        outline: none;
+    }
+
+/* دکمه ورود */
+.btn-primary {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border: none;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.75rem;
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+        background: linear-gradient(135deg, #439ae0, #00d4df);
+    }
+
+/* فوتر و لینک‌ها */
+.login-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.link {
+    color: #4facfe;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .link:hover {
+        text-decoration: underline;
+    }
+
+/* پیام‌های خطا */
+.text-danger {
+    font-size: 0.78rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.alert-danger {
+    border-radius: 0.6rem;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #f87171;
+}
